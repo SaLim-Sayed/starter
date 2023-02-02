@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CrudController;
 use App\Http\Controllers\Front\UserController;
-use App\Http\Controllers\Admin\SecondController;
+use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +21,12 @@ Route::get('/', function () {
 });
 
 /* Route::get('/test', function () {
-    return ('welcome');
+return ('welcome');
 });
 
 Route::namespace ('Front')->group(function () {
-    Route::get('user', [UserController::class, 'show']);
+Route::get('user', [UserController::class, 'show']);
 }); */
-
-
-
-
 
 /* Route::group(['namespace'=>'Admin'], function () {
 Route::get('second',[SecondController::class, 'show']);
@@ -38,10 +34,15 @@ Route::get('second',[SecondController::class, 'show']);
 
 Route::resource('news', NewsController::class);
 
-Route::get('view',[UserController::class, 'getView']);
+Route::get('view', [UserController::class, 'getView']);
 
-
-Auth::routes(['verify'=>true]);
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
+//
+Route::group(['prefix' => 'offer'], function () {
+    Route::get('get', [CrudController::class, 'getOffers'])->name('offers.getOffers');
+    Route::get('create', [CrudController::class, 'createOffer'])->name('offers.create');
+    Route::post('store', [CrudController::class, 'store'])->name('offer.store');
+});

@@ -21,7 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="nav  relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -33,6 +33,10 @@
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                         @endif
                     @endauth
+                </div>
+                <div class=" fixed top-0 right-100 px-6 py-4 sm:block">
+                        <a href="{{ route('offers.getOffers') }}" class="btn btn-success mx-5">Get All Offers |</a>
+                        <a href="{{ route('offers.create') }}" class="btn btn-success mx-5">Create Offer</a>
                 </div>
             @endif
 
@@ -49,3 +53,7 @@
         </div>
     </body>
 </html>
+
+{{-- 
+725516072471476
+15102d4a942c57f50f9e8bf19d5ceeb0 --}}
