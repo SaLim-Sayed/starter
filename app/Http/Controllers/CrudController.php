@@ -31,9 +31,9 @@ class CrudController extends Controller
         $messages = $this->getMessages();
        
 
-        $validate = Validator::make($request->all(), $rules, $messages);
-        if ($validate->fails()) {
-            return redirect()->back()->withErrors($validate)->withInputs($request->all());
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
         Offer::create([
             'name' => $request->name,
@@ -53,9 +53,9 @@ class CrudController extends Controller
     }
     protected function getMessages(){
         return [
-            'name.required' => 'اسم العرض مطلوب',
+            'name.required' => __('messages.offer name required'),
             'details.required' => 'تفاصيل العرض مطلوبة',
-            'name.unique' => 'اسم العرض موجود',
+            'name.unique' => __('messages.offer name must be unique'),
             'price.required' => 'سعر العرض مطلوب',
             'price.numeric' => 'سعر العرض يجب ان يكون رقماََ',
         ];

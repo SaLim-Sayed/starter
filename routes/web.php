@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
 
 /* Route::get('/test', function () {
@@ -41,8 +42,10 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 //
-Route::group(['prefix' => 'offer'], function () {
-    Route::get('get', [CrudController::class, 'getOffers'])->name('offers.getOffers');
-    Route::get('create', [CrudController::class, 'createOffer'])->name('offers.create');
-    Route::post('store', [CrudController::class, 'store'])->name('offer.store');
+
+    Route::group(['prefix' => 'offer'], function () {
+        Route::get('get', [CrudController::class, 'getOffers'])->name('offers.getOffers');
+        Route::get('create', [CrudController::class, 'createOffer'])->name('offers.create');
+        Route::post('store', [CrudController::class, 'store'])->name('offer.store');
+    });
 });

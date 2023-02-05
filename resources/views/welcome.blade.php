@@ -34,10 +34,19 @@
                         @endif
                     @endauth
                 </div>
+                <div class=" fixed top-0 right-10 px-6 py-4 sm:block">
+                    
+                </div>
                 <div class=" fixed top-0 right-100 px-6 py-4 sm:block">
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                {{ $properties['native'] }}
+                            </a>
+                    @endforeach ||
                         <a href="{{ route('offers.getOffers') }}" class="btn btn-success mx-5">Get All Offers |</a>
                         <a href="{{ route('offers.create') }}" class="btn btn-success mx-5">Create Offer</a>
                 </div>
+                
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
