@@ -28,7 +28,7 @@
 </div> --}}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">{{trans('messages.offers')}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -43,22 +43,9 @@
                         {{ $properties['native'] }}
                     </a>
                 @endforeach
-                <a class="btn btn-outline-success" href="{{ route('offers.getOffers') }}">Get All Offers |</a>
-                <a class="btn btn-outline-success" href="{{ route('offers.create') }}">Create Offer</a>
+                <a class="btn btn-outline-success" href="{{ route('offers.getOffers') }}">{{__('messages.get all offers')}}</a>
+                <a class="btn btn-outline-success" href="{{ route('offers.create') }}">{{__('messages.create offer')}}</a>
             </li>
-           {{--  @if (Route::has('login'))
-                <li class="nav-item ml-0">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-            @endif --}}
         </ul>
     </div>
 </nav>

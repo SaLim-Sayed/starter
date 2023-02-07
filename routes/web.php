@@ -17,31 +17,17 @@ use Illuminate\Support\Facades\Route;
  */
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
-Route::get('/', function () {
-    return view('layout');
-});
+    Route::get('/', function () {
+        return view('layout');
+    });
 
-/* Route::get('/test', function () {
-return ('welcome');
-});
+    Route::resource('news', NewsController::class);
 
-Route::namespace ('Front')->group(function () {
-Route::get('user', [UserController::class, 'show']);
-}); */
+    Route::get('view', [UserController::class, 'getView']);
 
-/* Route::group(['namespace'=>'Admin'], function () {
-Route::get('second',[SecondController::class, 'show']);
-}); */
+    Auth::routes(['verify' => true]);
 
-Route::resource('news', NewsController::class);
-
-Route::get('view', [UserController::class, 'getView']);
-
-Auth::routes(['verify' => true]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
-
-//
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
     Route::group(['prefix' => 'offer'], function () {
         Route::get('get', [CrudController::class, 'getOffers'])->name('offers.getOffers');

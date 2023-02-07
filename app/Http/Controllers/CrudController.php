@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
-use Illuminate\Http\Request;
-use Validator;
+use App\Http\Requests\OfferRequest;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 class CrudController extends Controller
 {
@@ -15,7 +16,12 @@ class CrudController extends Controller
 
     public function getOffers()
     {
-        $offers = Offer::orderBy('id', 'DESC')->get();
+        $offers = Offer::select(
+            'id',
+            'price',
+            'name_'.LaravelLocalization::getCurrentLocale().' as name',
+            'details_'.LaravelLocalization::getCurrentLocale().' as details',
+        )->get();
         return view('offers.getOffers', compact('offers'));
     }
 
@@ -23,41 +29,17 @@ class CrudController extends Controller
     {
         return view('offers.create');
     }
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
-
-
-        $rules = $this->getRules();
-        $messages = $this->getMessages();
-       
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInputs($request->all());
-        }
         Offer::create([
-            'name' => $request->name,
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
             'price' => $request->price,
             'photo' => 'img2.png',
-            'details' => $request->details,
+            'details_en' => $request->details_en,
+            'details_ar' => $request->details_ar,
         ]);
-        return redirect(route('offers.getOffers'))->with(['success' => 'تم اضافة العرض بنجاح']);
+        return redirect(route('offers.getOffers'))->with(['success' =>__('messages.success')]);
     }
 
-    protected function getRules(){
-       return  [
-            'name' => 'required|string|unique:offers,name|max:100',
-            'price' => 'required|numeric',
-            'details' => 'required|string',
-        ];
-    }
-    protected function getMessages(){
-        return [
-            'name.required' => __('messages.offer name required'),
-            'details.required' => 'تفاصيل العرض مطلوبة',
-            'name.unique' => __('messages.offer name must be unique'),
-            'price.required' => 'سعر العرض مطلوب',
-            'price.numeric' => 'سعر العرض يجب ان يكون رقماََ',
-        ];
-    }
 }
