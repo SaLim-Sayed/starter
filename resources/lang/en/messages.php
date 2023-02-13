@@ -11,10 +11,10 @@ return [
     | that are given by the password broker for a password update attempt
     | has failed, such as for an invalid token or invalid new password.
     |
-    */
-    "offers"=>"Offers",
-    "create offer"=>'Create offer',
-    "get all offers"=>'Get All Offers',
+     */
+    "offers" => "Offers",
+    "create offer" => 'Create offer',
+    "get all offers" => 'Get All Offers',
 
     "hello gus" => 'Hello GUS',
     "welcom" => 'WELCOME ',
@@ -37,4 +37,9 @@ return [
     "offer not exist" => "offer not exist",
     "offer deleted successfully" => "offer deleted successfully",
     "success" => ' Offer Added Successfully ',
+    'All Offers' => 'All Offers',
+    'choose image' => 'Choose image',
+    'Offer opreation'=>'Edit',
+    'Opreation'=>'Opreation',
+    'Offer photo'=>'Offer photo'
 ];

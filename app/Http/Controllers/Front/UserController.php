@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function show(){
-        return 'Salim Sayeed';
+        return 'Salim Sayed';
     }
 
     public function getView(){

@@ -45,6 +45,10 @@
                 @endforeach
                 <a class="btn btn-outline-success" href="{{ route('offers.getOffers') }}">{{__('messages.get all offers')}}</a>
                 <a class="btn btn-outline-success" href="{{ route('offers.create') }}">{{__('messages.create offer')}}</a>
+                <a class="btn btn-outline-success" href="{{ route('video') }}">Video</a>
+                <a class="btn btn-outline-success" href="{{ route('ajax.create') }}">Ajax Create</a>
+                <a href="{{ url('/home') }}" class="btn btn-outline-success ml-0">login</a>
+
             </li>
         </ul>
     </div>
